@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>数字随机程序</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+</head>
+
+<body style="background: white;">
+    <div style="text-align:center;margin:0 auto;">
+        <p>每<input id="period" style="width: 20px;" value="2" />秒从<input id="num1" value="1"
+                style="width: 50px;" />到<input id="num2" value="10" style="width: 50px;" />中滚动数字</p>
+        <p><button style="width: 200px;" onclick="window.location.reload();">刷新</button></p>
+        <p><button style="width: 200px;" onclick="start()">开始</button></p>
+        <p><button style="width: 200px;" onclick="stop()">停止</button></p>
+    </div>
+    <h1 id="h1" style="text-align:center;margin:0 auto;font-size: 100px;"></h1>
+
+</body>
+<script>
+    let timer;
+    let start = () => {
+        let period = parseInt(document.querySelector("#period").value);
+        let num1 = parseInt(document.querySelector("#num1").value);
+        let num2 = parseInt(document.querySelector("#num2").value);
+        stop();
+        if (period > 0 && num1 > 0 && num2 > 0) {
+            timer = window.setInterval(function () {
+                let r = parseInt(Math.random() * num2);
+                if (r <= num1) {
+                    r = num1;
+                }
+                if (r >= num2) {
+                    r = num2
+                }
+                document.querySelector("#h1").textContent = r;
+            }, period * 1000);
+        }
+    }
+    let stop = () => { if (timer) { window.clearInterval(timer); } }
+</script>
+</html>
