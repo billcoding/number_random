@@ -4,8 +4,8 @@ Menu.setApplicationMenu(null)
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 400,
-    height: 400,
+    width: 800,
+    height: 800,
     resizable: false
   })
 
